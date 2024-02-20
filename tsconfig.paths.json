@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+        "baseUrl": ".",
+        "paths": {
+            "@libs/*": [
+                "src/libs/*"
+            ],
+            "@routes/*": [
+                "src/routes/*"
+            ],
+            "@config/*": [
+                "src/config/*"
+            ],
+            "@middlewares/*": [
+                "src/middlewares/*"
+            ]
+        }
+    }
+}
