@@ -20,8 +20,8 @@
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "start:local": "cross-env NODE_ENV=local PORT=3005 nest build --webpack --webpackPath webpack-hmr.config.js --watch",
     "start:dev": "nest build --webpack --webpackPath webpack-hmr.config.js --watch",
-    "db:create": "cross-env NODE_ENV=local ts-node ./node_modules/typeorm-extension/bin/cli.cjs db:create -d ./src/config/database.config.ts",
-    "schema:sync": "cross-env NODE_ENV=local ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js schema:sync -d ./src/config/database.config.ts"
+    "db:create": "cross-env NODE_ENV=local \"ts-node\" -r tsconfig-paths/register ./node_modules/typeorm-extension/bin/cli.cjs db:create -d ./src/config/database.config.ts",
+    "schema:sync": "cross-env NODE_ENV=local \"ts-node\" -r tsconfig-paths/register ./node_modules/typeorm/cli.js schema:sync -d ./src/config/database.config.ts"
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",
