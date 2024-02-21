@@ -4,7 +4,10 @@ import { ConfigService } from '@nestjs/config';
 @Injectable()
 export class AppService {
   constructor(private configService: ConfigService) {}
-  getHello(): string {
-    return this.configService.get('DB_USERNAME');
+  getHello(version: number): any {
+    return {
+      DB_USERNAME: this.configService.get('DB_USERNAME'),
+      version: version,
+    };
   }
 }

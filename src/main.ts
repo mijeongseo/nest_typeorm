@@ -2,11 +2,22 @@ import { NestFactory } from '@nestjs/core';
 import type { NestExpressApplication } from '@nestjs/platform-express';
 import { AppModule } from './app.module';
 import helmet from 'helmet';
+import { ValidationPipe, VersioningType } from '@nestjs/common';
 
 declare const module: any;
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
+  app.useGlobalPipes(
+    new ValidationPipe({
+      transform: true,
+    }),
+  );
+  app.setGlobalPrefix('api');
+  app.enableVersioning({
+    type: VersioningType.URI,
+    defaultVersion: '1',
+  });
 
   if (process.env.NODE_ENV !== 'production') {
     app.enableCors({
@@ -22,7 +33,9 @@ async function bootstrap() {
   }
 
   const PORT = process.env.PORT || 3000;
-  await app.listen(PORT);
+  await app.listen(PORT, () => {
+    console.log(PORT, '번 포트에 서버 실행');
+  });
 
   if (module.hot) {
     module.hot.accept();
