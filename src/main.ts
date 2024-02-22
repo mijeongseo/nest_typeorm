@@ -3,11 +3,14 @@ import type { NestExpressApplication } from '@nestjs/platform-express';
 import { AppModule } from './app.module';
 import helmet from 'helmet';
 import { ValidationPipe, VersioningType } from '@nestjs/common';
+import { winstonLogger } from '@utils/winston.util';
 
 declare const module: any;
 
 async function bootstrap() {
-  const app = await NestFactory.create<NestExpressApplication>(AppModule);
+  const app = await NestFactory.create<NestExpressApplication>(AppModule, {
+    logger: winstonLogger,
+  });
   app.useGlobalPipes(
     new ValidationPipe({
       transform: true,

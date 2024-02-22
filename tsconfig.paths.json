@@ -16,6 +16,9 @@
             ],
             "@entities/*": [
                 "src/entities/*"
+            ],
+            "@utils/*": [
+                "src/utils/*"
             ]
         }
     }
