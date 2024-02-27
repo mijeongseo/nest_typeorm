@@ -1,10 +1,12 @@
 import { NestFactory } from '@nestjs/core';
 import type { NestExpressApplication } from '@nestjs/platform-express';
-import { AppModule } from './app.module';
-import helmet from 'helmet';
 import { ValidationPipe, VersioningType } from '@nestjs/common';
+import helmet from 'helmet';
+
+import { AppModule } from './app.module';
 import { winstonLogger } from '@utils/winston.util';
 import { HttpExceptionFilter } from '@utils/http-exception.filter';
+import { initializeSwagger } from '@utils/swagger.util';
 
 declare const module: any;
 
@@ -25,6 +27,7 @@ async function bootstrap() {
   });
 
   if (process.env.NODE_ENV !== 'production') {
+    initializeSwagger(app);
     app.enableCors({
       origin: true,
       credentials: true,
